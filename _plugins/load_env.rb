@@ -11,5 +11,4 @@ Jekyll::Hooks.register :site, :after_init do |site|
   site.config['app_id'] = ENV['app_id']
   site.config['measure_id'] = ENV['measure_id']
   site.config['localurl'] = ENV['LOCAL_URL']
-  site.config['OPENAI_API_KEY'] = ENV['OPENAI_API_KEY']
 end
