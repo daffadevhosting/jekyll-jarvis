@@ -11,6 +11,17 @@
 - Buat endpoint /ask untuk tanya jawab
 - Integrasi antarmuka (Web, atau BotTelegram)
 
+```pgsql
+jarvis-dashboard/
+├── public/
+│   ├── index.html (jekyll generate)
+│   └── style.css
+├── server/
+│   └── index.js
+├── .env
+└── package.json
+```
+
 ### ⚙️ Contoh Kode Awal (Node.js + Express + GPT-4 API)
 
 `install depensi`
@@ -73,6 +84,48 @@ app.listen(3000, () => {
 - Telegram bot (cocok untuk mobilitas)
 - Voice input (pakai Whisper atau Google STT)
 
+### 🧠 assets/js/script.js
+```js
+const form = document.getElementById("chat-form");
+const input = document.getElementById("user-input");
+const chatBox = document.getElementById("chat-box");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const message = input.value.trim();
+  if (!message) return;
+
+  appendMessage("user", message);
+  input.value = "";
+
+  appendMessage("jarvis", "⏳ Sedang berpikir...");
+
+  const res = await fetch("/ask", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message }),
+  });
+
+  const data = await res.json();
+
+  chatBox.lastChild.remove();
+  appendMessage("jarvis", data.reply);
+});
+
+function appendMessage(role, text) {
+  const div = document.createElement("div");
+  div.className = role;
+  div.textContent = text;
+  chatBox.appendChild(div);
+  chatBox.scrollTop = chatBox.scrollHeight;
+}
+```
+
+### ✅ Jalankan:
+```bash
+node server/index.js
+```
+
 ### 🔌 Fase 3 – Control Center
 
 * Tujuan: Jadikan Jarvis lebih dari sekadar ngobrol.
@@ -81,3 +134,10 @@ app.listen(3000, () => {
 - Firebase/Firestore (untuk simpan & ambil data)
 - Kalender Google (via OAuth2)
 - Kontrol lampu/AC/TV (pakai IFTTT atau Tuya API)
+
+### 🔮 Next Step:
+
+- BOT TELEGRAM
+- Mode suara (voice-to-text)
+- Riwayat percakapan
+- Login user

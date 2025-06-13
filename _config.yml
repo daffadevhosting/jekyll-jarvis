@@ -1,7 +1,7 @@
 # Welcome to Jekyll!
 
 port: 8800
-title: Jekyll-Jarvis
+title: Jarvis Assistant
 description: backend sederhana pakai GPT-4 API untuk jadi otak si Jarvis.
 baseurl: "" 
 localurl: "<%= ENV['LOCAL_URL'] %>"

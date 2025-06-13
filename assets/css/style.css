@@ -1,0 +1,15 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#chat-box .user {
+  text-align: right;
+  color: #0dcaf0;
+  margin-bottom: 8px;
+}
+
+#chat-box .jarvis {
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 8px;
+}

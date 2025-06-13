@@ -1,6 +1,16 @@
 ---
 layout: default
 ---
-<div class="d-flex justify-content-center align-items-center w-100" style="height: 100dvh;">
-<h1>Hello world!</h1>
-</div>
+
+  <div class="container py-4">
+    <h1 class="text-center mb-4">🧠 Jarvis Assistant</h1>
+    
+    <div id="chat-box" class="bg-secondary p-3 rounded" style="height: 400px; overflow-y: scroll;"></div>
+
+    <form id="chat-form" class="d-flex mt-3">
+      <input type="text" id="user-input" class="form-control me-2" placeholder="Tanya sesuatu..." required />
+      <button type="submit" class="btn btn-primary">Kirim</button>
+    </form>
+  </div>
+
+  <script src="./assets/js/script.js"></script>
