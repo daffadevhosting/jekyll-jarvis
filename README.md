@@ -139,9 +139,91 @@ node server/index.js
 - Kalender Google (via OAuth2)
 - Kontrol lampu/AC/TV (pakai IFTTT atau Tuya API)
 
-### 🔮 Next Step:
+## 🔮 Next Step:
 
-- BOT TELEGRAM
+- **BOT TELEGRAM**
 - Mode suara (voice-to-text)
+- Riwayat percakapan
+- Login user
+
+## 🤖 BOT Telegram
+
+### Bot yang jadi mulutnya si Jarvis. Bot ini akan:
+
+- Terima pesan dari kamu via Telegram
+- Kirim ke GPT-4 API
+- Balas langsung ke chat dengan gaya smart assistant
+
+### 🧠 Alur Kerja Bot Jarvis via Telegram
+```nginx
+Telegram Chat → Bot Telegram → GPT-4 API → Balas ke Telegram
+```
+
+### 🔧 Alat Tempur
+- Node.js
+- node-telegram-bot-api
+
+- **Install dulu**
+```bash
+npm install node-telegram-bot-api express axios dotenv
+```
+`.env`
+```env
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+TELEGRAM_BOT_TOKEN=isi_dari_BotFather
+```
+### assets/js/bot.js
+```js
+require('dotenv').config();
+const TelegramBot = require('node-telegram-bot-api');
+const axios = require('axios');
+
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+const GPT_API = 'https://api.openai.com/v1/chat/completions';
+
+bot.on('message', async (msg) => {
+  const chatId = msg.chat.id;
+  const userMessage = msg.text;
+
+  // Kirim placeholder "Jarvis sedang mikir..."
+  await bot.sendMessage(chatId, '🧠 Jarvis sedang memproses...');
+
+  try {
+    const res = await axios.post(
+      GPT_API,
+      {
+        model: 'gpt-4o',
+        messages: [{ role: 'user', content: userMessage }],
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    const reply = res.data.choices[0].message.content;
+    await bot.sendMessage(chatId, `🤖 Jarvis:\n${reply}`);
+  } catch (err) {
+    console.error(err.response?.data || err.message);
+    await bot.sendMessage(chatId, '⚠️ Jarvis gagal berpikir. Coba lagi ya.');
+  }
+});
+```
+
+### ✅ Jalankan Bot:
+```bash
+node serve/bot.js
+```
+
+### 🧪 Tes:
+- Buka Telegram
+- Cari bot kamu (nama yang kamu kasih via @BotFather)
+- Chat: "Hai Jarvis, kamu bisa bantuin nyusun ide bisnis?"
+
+## 🔮 Next Step:
+
+- **Mode suara (voice-to-text)**
 - Riwayat percakapan
 - Login user
