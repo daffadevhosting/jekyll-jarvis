@@ -1,3 +1,11 @@
+body.capra .has-glow {
+    --glow-stop-1: #ffc400;
+    --glow-stop-2: #ff9100;
+    --glow-stop-3: #f8682f;
+    --glow-stop-4: #e62c6d;
+    --glow-stop-5: #b25aff;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
 }
@@ -17,4 +25,7 @@ body {
 .bg-jarvis {
     --bs-bg-opacity: 1;
     background-color: rgb(0 0 0 / 55%) !important;
+    background: linear-gradient(135deg, var(--glow-stop-1) 0, var(--glow-stop-2) 25%
+25%
+, var(--glow-stop-3) 50%, var(--glow-stop-4) 75%, var(--glow-stop-5) 100%);
 }
