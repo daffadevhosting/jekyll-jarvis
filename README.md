@@ -4,6 +4,10 @@
 
 * Tujuan: Bangun backend sederhana pakai **GPT-4 API** untuk jadi otak si **"Jarvis"**.
 
+| Jarvis CLI |
+|-----------------|
+| ![](./assets/images/jarvis_8800.png) |
+
 **Langkah:**
 - Setup akun OpenAI API
 - Bikin server backend (Node.js atau Python FastAPI)

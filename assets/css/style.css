@@ -9,7 +9,12 @@ body {
 }
 
 #chat-box .jarvis {
-  text-align: left;
-  color: #ffffff;
-  margin-bottom: 8px;
+    text-align: left;
+    color: #43ed0f;
+    margin-bottom: 8px;
+    font-size: larger;
+}
+.bg-jarvis {
+    --bs-bg-opacity: 1;
+    background-color: rgb(0 0 0 / 55%) !important;
 }
